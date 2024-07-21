@@ -1,7 +1,7 @@
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
-
+let lightbox;
 
 export function renderCard(img, containerCard) {
 
@@ -20,17 +20,18 @@ export function renderCard(img, containerCard) {
        </div>
       </div>`).join("");
   
-    
-    containerCard.insertAdjacentHTML("beforeend", markup);
+  
+  containerCard.insertAdjacentHTML("beforeend", markup);
 
-    const lightbox = new SimpleLightbox('.card-img a', {
+  if (!lightbox) {
+    lightbox = new SimpleLightbox('.card-img a', {
         captions: true,
         captionsData: "alt",
         captionPosition: "bottom",
         captionDelay: 250,
     });
-
-      lightbox.refresh();
-
+  } else {
+    lightbox.refresh();
+  }      
 }
  
